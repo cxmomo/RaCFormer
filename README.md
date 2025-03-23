@@ -1,7 +1,7 @@
 # RaCFormer
 Official PyTorch Implementation of "RaCFormer: Towards High-Quality 3D Object Detection via Query-based Radar-Camera Fusion (CVPR 2025)"
 
-![](asserts/arch.png)
+![](arch.jpg)
 
 
 ## Environment
