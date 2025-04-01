@@ -1,7 +1,7 @@
 import torch
 import torch.nn.functional as F
 from .bbox.utils import decode_bbox
-from .utils import rotation_3d_in_axis, rotation_3d_in_axis_vod, DUMP
+from .utils import rotation_3d_in_axis, DUMP
 from .csrc.wrapper import msmv_sampling, msmv_sampling_v2
 
 
@@ -24,26 +24,6 @@ def make_sample_points(query_bbox, offset, pc_range, return_wlh=False):
         return sample_xyz, wlh
     return sample_xyz  # [B, Q, P, 3]
 
-def make_sample_points_vod(query_bbox, offset, pc_range, return_wlh=False):
-    '''
-    query_bbox: [B, Q, 10]
-    offset: [B, Q, num_points, 4], normalized by stride
-    '''
-    query_bbox = decode_bbox(query_bbox, pc_range)  # [B, Q, 9]
-
-    xyz = query_bbox[..., 0:3]  # [B, Q, 3]
-    wlh = query_bbox[..., 3:6]  # [B, Q, 3]
-    ang = query_bbox[..., 6:7]  # [B, Q, 1]
-
-    delta_xyz = offset[..., 0:3]  # [B, Q, P, 3]
-    delta_xyz = wlh[:, :, None, :] * delta_xyz  # [B, Q, P, 3]
-    delta_xyz = rotation_3d_in_axis_vod(delta_xyz, ang)  # [B, Q, P, 3]
-    # delta_xyz2 = rotation_3d_in_axis_vod2(delta_xyz, ang)
-    # hh = delta_xyz - delta_xyz2
-    sample_xyz = xyz[:, :, None, :] + delta_xyz  # [B, Q, P, 3]
-    if return_wlh:
-        return sample_xyz, wlh
-    return sample_xyz  # [B, Q, P, 3]
 
 def sampling_4d(sample_points, mlvl_feats, scale_weights, lidar2img, image_h, image_w, aggregate=True, eps=1e-5):
     """
