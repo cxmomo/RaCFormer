@@ -1,10 +1,11 @@
-# RaCFormer
-Official PyTorch Implementation of "**RaCFormer: Towards High-Quality 3D Object Detection via Query-based Radar-Camera Fusion (CVPR 2025)**"
+<div align="center">
+<h1>RaCFormer: Towards High-Quality 3D Object Detection via Query-based Radar-Camera Fusion (CVPR 2025)</h1>
 
 Xiaomeng Chu, Jiajun Deng, Guoliang You, Yifan Duan, Houqiang Li, Yanyong Zhang
 
 <a href="https://arxiv.org/abs/2412.12725"><img src="https://img.shields.io/badge/arXiv-2412.12725-b31b1b" alt="arXiv"></a>
 <a href="https://drive.google.com/file/d/10Ky3lQWC2MLkQCpY81Jz5yxd4xWF8tAq/view?usp=sharing" target="_blank"><img src="https://img.shields.io/badge/Checkpoint-Orange" alt="checkpoint"></a>
+</div>
 
 ```bibtex
 @inproceedings{chu2025racformer,
@@ -16,7 +17,13 @@ Xiaomeng Chu, Jiajun Deng, Guoliang You, Yifan Duan, Houqiang Li, Yanyong Zhang
 }
 ```
 
-![](arch.jpg)
+## Overview
+
+This repository is an official implementation of [RaCFormer](https://openaccess.thecvf.com/content/CVPR2025/html/Chu_RaCFormer_Towards_High-Quality_3D_Object_Detection_via_Query-based_Radar-Camera_Fusion_CVPR_2025_paper.html), an innovative query-based 3D object detection method through cross-perspective radar-camera fusion.
+<div style="text-align: center;">
+    <img src="arch.jpg" alt="Dialogue_Teaser" width=100% >
+</div>
+
 
 
 ## Environment
