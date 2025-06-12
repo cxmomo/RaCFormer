@@ -1,5 +1,20 @@
 # RaCFormer
-Official PyTorch Implementation of "RaCFormer: Towards High-Quality 3D Object Detection via Query-based Radar-Camera Fusion (CVPR 2025)"
+Official PyTorch Implementation of "**RaCFormer: Towards High-Quality 3D Object Detection via Query-based Radar-Camera Fusion (CVPR 2025)**"
+
+Xiaomeng Chu, Jiajun Deng, Guoliang You, Yifan Duan, Houqiang Li, Yanyong Zhang
+
+<a href="https://arxiv.org/abs/2412.12725"><img src="https://img.shields.io/badge/arXiv-2412.12725-b31b1b" alt="arXiv"></a>
+<a href="https://drive.google.com/file/d/10Ky3lQWC2MLkQCpY81Jz5yxd4xWF8tAq/view?usp=sharing" target="_blank"><img src="https://img.shields.io/badge/Checkpoint-Orange" alt="checkpoint"></a>
+
+```bibtex
+@inproceedings{chu2025racformer,
+  title={RaCFormer: Towards High-Quality 3D Object Detection via Query-based Radar-Camera Fusion},
+  author={Chu, Xiaomeng and Deng, Jiajun and You, Guoliang and Duan, Yifan and Li, Houqiang and Zhang, Yanyong},
+  booktitle={Proceedings of the Computer Vision and Pattern Recognition Conference},
+  pages={17081--17091},
+  year={2025}
+}
+```
 
 ![](arch.jpg)
 
