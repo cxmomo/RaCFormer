@@ -78,7 +78,7 @@ def sampling_4d(sample_points, mlvl_feats, scale_weights, lidar2img, image_h, im
         & (sample_points_cam[..., 0:1] > 0.0)
         & (sample_points_cam[..., 0:1] < 1.0)
     ).squeeze(-1).float()  # [B, T, N, Q, GP]
-    # a = valid_mask[valid_mask==1]
+    
     # for visualization only
     if DUMP.enabled:
         torch.save(torch.cat([sample_points_cam, homo_nonzero], dim=-1),
@@ -127,8 +127,8 @@ def sampling_4d(sample_points, mlvl_feats, scale_weights, lidar2img, image_h, im
     # reorganize the sampled features
     C = final.shape[2]  # [BTG, Q, C, P]
     final = final.reshape(B, T, G, Q, C, P)
-    final = final.permute(0, 3, 2, 1, 5, 4)
-    final = final.flatten(3, 4)  # [B, Q, G, FP, C]
+    final = final.permute(0, 3, 2, 1, 5, 4)  # [B, Q, G, T, P, C]
+    final = final.flatten(3, 4)  # [B, Q, G, TP, C]
     if not aggregate:
         return final, homo[:,0], i_view[:,0]
     return final

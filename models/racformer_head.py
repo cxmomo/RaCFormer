@@ -239,8 +239,8 @@ class RaCFormer_head(DETRHead):
                 'pad_size': dn_pad_size
             }
         else:
-            input_query_bbox = init_query_bbox.repeat(batch_size, 1, 1)
-            input_query_feat = init_query_feat.repeat(batch_size, 1, 1)
+            input_query_bbox = init_query_bbox
+            input_query_feat = init_query_feat
             attn_mask = None
             mask_dict = None
 

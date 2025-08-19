@@ -410,7 +410,6 @@ class LoadVoDPointsFromFile(object):
         num_points = points.shape[0]
         pts_4d = np.concatenate([points[:, :3], np.ones((num_points, 1))], axis=-1)
         pts_2d = pts_4d @ lidar2img_rt.T
-        # pts_2d = lidar2img_rt @ pts_4d
 
         # cam_points is Tensor of Nx4 whose last column is 1
         # transform camera coordinate to image coordinate
@@ -418,8 +417,7 @@ class LoadVoDPointsFromFile(object):
         pts_2d[:, 0] /= pts_2d[:, 2]
         pts_2d[:, 1] /= pts_2d[:, 2]
 
-        # depth_map = self.points2depthmap(torch.from_numpy(pts_2d).to(torch.float32), img.shape[0],
-        #                                     img.shape[1])
+
         depth_map = self.points2depthmap(pts_2d.astype(np.float32), img.shape[0],
                                             img.shape[1])
         results['gt_depth'] = depth_map
@@ -594,11 +592,7 @@ class RadarPointToMultiViewDepth(object):
 
     def __call__(self, results):
 
-        world_size = get_dist_info()[1]
-        if world_size == 1 and self.test_mode:
-            return self.load_online(results)
-        else:
-            return self.load_offline(results)
+        return self.load_offline(results)
         
     
 @PIPELINES.register_module()
@@ -727,12 +721,8 @@ class LoadMultiViewImageFromMultiSweeps(object):
     def __call__(self, results):
         if self.sweeps_num == 0:
             return results
-
-        world_size = get_dist_info()[1]
-        if world_size == 1 and self.test_mode:
-            return self.load_online(results)
-        else:
-            return self.load_offline(results)
+        
+        return self.load_offline(results)
     
 @PIPELINES.register_module()
 class Loadnuradarpoints(object):
@@ -947,9 +937,5 @@ class LoadradarpointsFromMultiSweeps(object):
     def __call__(self, results):
         if self.sweeps_num == 0:
             return results
-
-        world_size = get_dist_info()[1]
-        if world_size == 1 and self.test_mode:
-            return self.load_online(results)
-        else:
-            return self.load_offline(results)
+        
+        return self.load_offline(results)

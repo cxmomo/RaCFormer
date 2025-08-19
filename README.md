@@ -106,14 +106,14 @@ Single-GPU evaluation:
 
 ```
 export CUDA_VISIBLE_DEVICES=0
-python val.py --config configs/racformer_r50_nuimg_704x256_f8.py --weights checkpoints/r50_nuimg_704x256.pth
+python val.py --config configs/racformer_r50_nuimg_704x256_f8.py --weights checkpoints/racformer_r50_f8.pth
 ```
 
 Multi-GPU evaluation:
 
 ```
 export CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7
-torchrun --nproc_per_node 8 val.py --config configs/racformer_r50_nuimg_704x256_f8.py --weights checkpoints/r50_nuimg_704x256.pth
+torchrun --nproc_per_node 8 val.py --config configs/racformer_r50_nuimg_704x256_f8.py --weights checkpoints/racformer_r50_f8.pth
 ```
 
 ## Acknowledgements

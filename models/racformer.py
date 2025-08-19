@@ -458,11 +458,7 @@ class RaCFormer(MVXTwoStageDetector):
         return bbox_results
                     
     def simple_test(self, img_metas, img=None, rescale=False, radar_points=None, radar_depth=None, radar_rcs=None, **kwargs):
-        world_size = get_dist_info()[1]
-        if world_size == 1:  # online
-            return self.simple_test_online(img_metas, img, rescale, radar_points[0], radar_depth[0], radar_rcs[0])
-        else:  # offline
-            return self.simple_test_offline(img_metas, img, rescale, radar_points[0], radar_depth[0], radar_rcs[0])
+        return self.simple_test_offline(img_metas, img, rescale, radar_points[0], radar_depth[0], radar_rcs[0])
 
     def simple_test_offline(self, img_metas, img=None, rescale=False, radar_points=None, radar_depth=None, radar_rcs=None):
 
